@@ -248,6 +248,7 @@ Mutex::init(MutexProtocol
     // If system has support for priority inheritance we set the protocol
     // attribute of the mutex
     //
+#ifndef ANDROID
 #if defined(_POSIX_THREAD_PRIO_INHERIT) && _POSIX_THREAD_PRIO_INHERIT > 0
     if(PrioInherit == protocol)
     {
@@ -258,6 +259,7 @@ Mutex::init(MutexProtocol
             throw ThreadSyscallException(__FILE__, __LINE__, rc);
         }
     }
+#endif
 #endif
 
     rc = pthread_mutex_init(&_mutex, &attr);

@@ -298,7 +298,11 @@ Cond::timedWaitImpl(const M& mutex, const Time& timeout) const
     timespec ts;
     ts.tv_sec = tv.tv_sec;
     ts.tv_nsec = tv.tv_usec * 1000;
+#ifdef ANDROID
+    int rc = pthread_cond_timedwait_monotonic_np(&_cond, state.mutex, &ts);
+#else
     int rc = pthread_cond_timedwait(&_cond, state.mutex, &ts);
+#endif
     mutex.lock(state);
     
     if(rc != 0)

@@ -742,7 +742,9 @@ IceUtil::Thread::start(size_t stackSize, bool realtimeScheduling, int priority)
             pthread_attr_destroy(&attr);
             throw ThreadSyscallException(__FILE__, __LINE__, rc);
         }
+#ifndef ANDROID
         pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
+#endif
     }
     rc = pthread_create(&_thread, &attr, startHook, this);
     pthread_attr_destroy(&attr);

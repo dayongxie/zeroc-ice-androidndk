@@ -16,7 +16,7 @@
 #include <algorithm>
 #include <iconv.h>
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(ANDROID)
 #include <langinfo.h>
 #endif
 
@@ -49,8 +49,10 @@ class IconvStringConverter : public Ice::BasicStringConverter<charT>
 {
 public:
 
-#ifdef _WIN32
+#if defined(_WIN32)
     IconvStringConverter(const char*);
+#elif defined(ANDROID)
+    IconvStringConverter(const char* = "UTF-8");
 #else
     IconvStringConverter(const char* = nl_langinfo(CODESET));
 #endif

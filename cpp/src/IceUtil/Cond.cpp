@@ -332,12 +332,14 @@ IceUtil::Cond::Cond()
         throw ThreadSyscallException(__FILE__, __LINE__, rc);
     }
 
+#ifndef ANDROID
 #if !defined(__hpux) && !defined(__APPLE__)
     rc = pthread_condattr_setclock(&attr, CLOCK_MONOTONIC); 
     if(rc != 0)
     {
         throw ThreadSyscallException(__FILE__, __LINE__, rc);
     }
+#endif
 #endif
 
     rc = pthread_cond_init(&_cond, &attr);

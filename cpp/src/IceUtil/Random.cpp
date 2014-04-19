@@ -73,12 +73,14 @@ public:
     Init()
     {
         staticMutex = new IceUtil::Mutex;
+#ifndef ANDROID
 #ifndef _WIN32
         //
         // Register a callback to reset the "/dev/urandom" fd 
         // state after fork.
         //
         pthread_atfork(0, 0, &childAtFork);
+#endif
 #endif
     }
     

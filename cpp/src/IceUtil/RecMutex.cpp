@@ -136,7 +136,7 @@ IceUtil::RecMutex::init(const MutexProtocol protocol)
         pthread_mutexattr_destroy(&attr);
         throw ThreadSyscallException(__FILE__, __LINE__, rc);
     }
-
+#ifndef ANDROID
 #if defined(_POSIX_THREAD_PRIO_INHERIT) && _POSIX_THREAD_PRIO_INHERIT > 0
     if(PrioInherit == protocol)
     {
@@ -147,6 +147,7 @@ IceUtil::RecMutex::init(const MutexProtocol protocol)
             throw ThreadSyscallException(__FILE__, __LINE__, rc);
         }
     }
+#endif
 #endif
 
     rc = pthread_mutex_init(&_mutex, &attr);

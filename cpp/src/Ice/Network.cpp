@@ -51,10 +51,12 @@
 #   include <sys/ioctl.h>
 #endif
 
+#ifndef ANDROID
 #if defined(__linux) || defined(__APPLE__) || defined(__FreeBSD__)
 #  include <ifaddrs.h>
 #elif defined(__sun)
 #  include <sys/sockio.h>
+#endif
 #endif
 
 using namespace std;
@@ -273,7 +275,7 @@ getLocalAddresses(ProtocolSupport protocol)
         // TODO: Warning?
         //
     }
-#elif defined(__linux) || defined(__APPLE__) || defined(__FreeBSD__)
+#elif !defined(ANDROID) && (defined(__linux) || defined(__APPLE__) || defined(__FreeBSD__))
     struct ifaddrs* ifap;
     if(::getifaddrs(&ifap) == SOCKET_ERROR)
     {

@@ -28,12 +28,13 @@
 #include <iomanip>
 #include <cstdlib>
 
-
+#ifndef ANDROID
 #if defined(__GNUC__) && !defined(__sun) && !defined(__FreeBSD__) && !defined(__MINGW32__)
 #  include <execinfo.h>
 #  include <cxxabi.h>
 #  define ICE_STACK_TRACES
 #  define ICE_GCC_STACK_TRACES
+#endif
 #endif
 
 #ifdef ICE_WIN32_STACK_TRACES
