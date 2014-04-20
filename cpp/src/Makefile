@@ -11,6 +11,10 @@ top_srcdir	= ..
 
 include $(top_srcdir)/config/Make.rules
 
+SLICEDIRS	= Glacier2 \
+		  Glacier2Lib \
+		  Ice
+
 SUBDIRS		= IceUtil \
 		  Slice \
 		  slice2cpp \
@@ -42,6 +46,16 @@ all:: $(SUBDIRS)
 $(SUBDIRS):
 	@echo "making all in $@"
 	@$(MAKE) all --directory=$@
+
+slice:: slice2cpp depend
+	@for subdir in $(SLICEDIRS); \
+        do \
+            if test -d $$subdir ; \
+            then \
+                echo "making $@ in $$subdir"; \
+                ( cd $$subdir && $(MAKE) slice ) || exit 1; \
+            fi; \
+        done
 
 $(EVERYTHING_EXCEPT_ALL)::
 	@for subdir in $(SUBDIRS); \

@@ -42,6 +42,8 @@ $(ROUTER): $(OBJS)
 	rm -f $@
 	$(CXX) $(LDFLAGS) -o $@ $(OBJS) -lGlacier2 $(LIBS) -lIceSSL $(OPENSSL_LIBS)
 
+slice: $(SRCS)
+
 install:: all
 	$(call installprogram,$(ROUTER),$(DESTDIR)$(install_bindir))
 

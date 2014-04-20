@@ -7,7 +7,7 @@
 #
 # **********************************************************************
 
-SUBDIRS			= cpp js
+SUBDIRS			= cpp
 CLEAN_SUBDIRS		= js cpp
 DEPEND_SUBDIRS		= cpp
 INSTALL_SUBDIRS		= cpp js
@@ -50,6 +50,10 @@ test::
 cpp::
 	echo "making all in cpp";
 	( cd cpp && $(MAKE) all ) || exit 1;
+
+slice::
+	echo "making slice in cpp";
+	( cd cpp && $(MAKE) slice ) || exit 1;
 
 js::
 	echo "making all in js";

@@ -45,5 +45,8 @@ $(EVERYTHING)::
 	    ( cd $$subdir && $(MAKE) $@ ) || exit 1; \
 	done
 
+slice::
+	( cd src && $(MAKE) $@ ) || exit 1
+
 test::
 	@python $(top_srcdir)/allTests.py
