@@ -10,6 +10,10 @@ http://doc.zeroc.com/display/Rel/Ice+for+JavaScript+0.1.0+Release+Notes
 #apt-get install libopenssl-dev
 #apt-get install libbz2-dev
 
+git clone https://github.com/CyanogenMod/android_external_bzip2.git bzip2
+git clone https://github.com/eighthave/openssl-android.git openssl-android
+git clone https://github.com/dayongxie/zeroc-ice-androidndk.git
+
 编译生成协议代码
 make slice
 
