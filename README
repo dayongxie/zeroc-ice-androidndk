@@ -1,23 +1,2 @@
-This archive contains the Ice for Javascript source code.
-
-For build and installation instructions, please refer to the manual:
-
-http://doc.zeroc.com/display/Rel/Ice+for+JavaScript+0.1.0+Release+Notes
-
-编译方法（编译环境Linux)
-安装依赖
-#apt-get install libmcpp-dev
-#apt-get install libopenssl-dev
-#apt-get install libbz2-dev
-
-git clone https://github.com/CyanogenMod/android_external_bzip2.git bzip2
-git clone https://github.com/eighthave/openssl-android.git openssl-android
-git clone https://github.com/dayongxie/zeroc-ice-androidndk.git
-
-编译生成协议代码
-make slice
-
-编译Android NDK
-cd jni
-source ./build_native.sh
-ndk-build
+This repository is dead， please goto the new one:
+https://github.com/dayongxie/icetouch
